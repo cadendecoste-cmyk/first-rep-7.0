@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FirstRep</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <div class="logo">FR</div>
+      <div>
+        <h1>FirstRep</h1>
+        <p class="subtitle">Beginner workouts that rotate automatically—with real features.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid">
+    <!-- GENERATE -->
+    <section class="card card-hero">
+      <div class="cardTop">
+        <h2>Generate Workout</h2>
+        <div class="chipRow">
+          <span class="chip" id="rotationChip">Rotation: Ready</span>
+          <span class="chip chip-soft" id="variationChip">Variation: Ready</span>
+        </div>
+      </div>
+
+      <form id="workoutForm" class="form">
+        <div class="two">
+          <label>
+            Days per week (1–6)
+            <input type="number" id="days" min="1" max="6" value="3" required />
+          </label>
+
+          <label>
+            Time per workout (minutes)
+            <input type="number" id="time" min="20" value="35" required />
+          </label>
+        </div>
+
+        <div class="two">
+          <label>
+            Sets per exercise
+            <select id="setsMode">
+              <option value="auto" selected>Auto (based on time)</option>
+              <option value="custom">Custom</option>
+            </select>
+          </label>
+
+          <label>
+            Custom sets (1–6)
+            <input type="number" id="customSets" min="1" max="6" value="3" disabled />
+          </label>
+        </div>
+
+        <div class="two">
+          <label>
+            Injury / limitation (optional)
+            <select id="injuryProfile">
+              <option value="none" selected>None</option>
+              <option value="shoulder">Shoulder</option>
+              <option value="elbow">Elbow</option>
+              <option value="wrist">Wrist</option>
+              <option value="lowback">Lower back</option>
+              <option value="knee">Knee</option>
+              <option value="ankle">Ankle</option>
+              <option value="hip">Hip</option>
+              <option value="neck">Neck</option>
+              <option value="cardio">Low cardio tolerance</option>
+            </select>
+          </label>
+
+          <label>
+            Intensity mode
+            <select id="intensityMode">
+              <option value="normal" selected>Normal</option>
+              <option value="cautious">Cautious (lighter + more stable)</option>
+              <option value="recovery">Active recovery (mobility + light work)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row">
+          <button type="submit">Generate</button>
+          <button type="button" id="resetRotationBtn" class="secondary">Reset Rotation</button>
+          <button type="button" id="clearAllBtn" class="secondary danger">Clear All Data</button>
+        </div>
+
+        <p id="rotationHint" class="hint"></p>
+        <p id="status" class="status"></p>
+      </form>
+
+      <div id="output"></div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="card">
+      <div class="row space-between">
+        <h2>Workout History</h2>
+        <div class="row">
+          <button type="button" id="exportBtn" class="secondary">Export</button>
+          <label class="fileLabel secondary">
+            Import
+            <input type="file" id="importFile" accept="application/json" hidden />
+          </label>
+        </div>
+      </div>
+      <div id="history"></div>
+    </section>
+
+    <!-- PRS -->
+    <section class="card">
+      <h2>Personal Records</h2>
+      <div id="prs"></div>
+    </section>
+
+    <!-- CHAT -->
+    <section class="card">
+      <div class="row space-between">
+        <h2>Workout Chat</h2>
+        <span class="badge" id="chatModeBadge">Offline Coach</span>
+      </div>
+
+      <p class="mini">
+        Ask anything while you train: form cues, stretching, cardio, diet basics, muscles worked, substitutions, recovery.
+      </p>
+
+      <div class="quickPrompts" id="quickPrompts"></div>
+
+      <div id="chatLog" class="chatLog"></div>
+
+      <div class="chatRow">
+        <input id="chatInput" type="text" placeholder="Ask (e.g., ‘What muscles does lat pulldown work?’)" />
+        <button id="chatSendBtn" type="button">Send</button>
+      </div>
+
+      <p class="mini muted">Chat is stored locally in your browser.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
